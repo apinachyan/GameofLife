@@ -16,10 +16,43 @@ newPlane (){
         } 
 }
 
+choose_next_field(character){
+        this.directions[0] = [this.x + 1, this.y];
+        var found = [];
+        for (var i in this.directions) {
+            var x = this.directions[i][0];
+            var y = this.directions[i][1];
+            if (x >= 0 && y >= 0 && x < matrix.length && y < matrix.length) {
+                if (matrix[y][x] == character) {
+                    found.push(this.directions[i]);
+                }
+            }
+        }
+        return found;
+}
 
 
 move (){
-    matrix[this.y][this.x] = 0;
+    let arr1 = this.choose_next_field(0);
+    let arr2 = this.choose_next_field(1);
+    let arr3 = this.choose_next_field(2);
+    let arr4 = this.choose_next_field(3);
+    let arr5 = this.choose_next_field(6);
+    if(arr1.length > 0){
+        matrix[this.y][this.x] = 0;
+    }
+    else if(arr2.length > 0){
+        matrix[this.y][this.x] = 1;
+    }
+    else if(arr3.length > 0){
+        matrix[this.y][this.x] = 2;
+    }
+    else if(arr4.length > 0){
+        matrix[this.y][this.x] = 3;
+    }
+    else if(arr5.length > 0){
+        matrix[this.y][this.x] = 6;
+    }
     this.x++;
     matrix[this.y][this.x] = 4;  
 // erb vor hasni verjin x = 0 ;
